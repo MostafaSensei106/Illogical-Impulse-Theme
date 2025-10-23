@@ -1,0 +1,10 @@
+{
+    "name": "Matugen",
+    "type": "dark",
+    "colors": {
+        "editor.background": "#121212",
+        "editor.foreground": "#E0E0E0",
+        "sideBar.background": "#181818",
+        "activityBar.background": "#181818"
+    }
+}
