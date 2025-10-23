@@ -1,100 +1,51 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as os from 'os';
+// ============================================================================ 
+// paletteReader.ts - Palette Configuration Reader 
+// ============================================================================ 
+
 import * as vscode from 'vscode';
+import { expandHome, safeReadJsonSync } from './utils/fs'; // Import from utils/fs
+import { normalizeHex, isDarkColor } from './utils/color'; // Import from utils/color
 
-// Expands a path that starts with ~ to the user's home directory.
-function expandHome(filepath: string): string {
-  if (!filepath) return filepath;
-  if (filepath.startsWith('~')) return path.join(os.homedir(), filepath.slice(1));
-  return filepath;
-}
+// ═══════════════════════════════════════════════════════════════════════════ 
+// MAIN PALETTE FUNCTIONS - الدوال الرئيسية للوحة الألوان 
+// ═══════════════════════════════════════════════════════════════════════════ 
 
-// Safely reads and parses a JSON file. Returns null if reading or parsing fails.
-function safeReadJsonSync(p: string): any | null {
-  try {
-    const raw = fs.readFileSync(p, 'utf8');
-    return JSON.parse(raw);
-  } catch (e) {
-    return null;
-  }
-}
-
-// Normalizes a color string from various formats (array, short hex, rgb) to a full 6-digit hex string.
-function normalizeHex(hex: any): string {
- // if (!hex) return '#000000';
-  if (Array.isArray(hex)) {
-    const arr = hex as any[];
-    return rgbToHex(arr[0] || 0, arr[1] || 0, arr[2] || 0);
-  }
-  hex = String(hex).trim();
-  if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(hex)) {
-    return hex.length === 4 ? '#' + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3] : hex;
-  }
-  const m = hex.match(/rgb\s*\(\s*(\d+),\s*(\d+),\s*(\d+)/i);
-  if (m) return rgbToHex(parseInt(m[1]), parseInt(m[2]), parseInt(m[3]));
-  const mm = hex.match(/^(\d+)\s*,\s*(\d+)\s*,\s*(\d+)$/);
-  if (mm) return rgbToHex(parseInt(mm[1]), parseInt(mm[2]), parseInt(mm[3]));
-  return hex; // Return as-is if it's not a recognized format (e.g., already has alpha)
-}
-
-function rgbToHex(r: number, g: number, b: number): string {
-  const clamp = (n: number) => Math.max(0, Math.min(255, Math.round(n)));
-  const h = (n: number) => clamp(n).toString(16).padStart(2, '0');
-  return `#${h(r)}${h(g)}${h(b)}`;
-}
-
-// Converts a hex color string to an RGB object {r, g, b}
-function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
-        return r + r + g + g + b + b;
-    });
-
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
-}
-
-// Calculates the luminance of an RGB color
-function getLuminance(r: number, g: number, b: number): number {
-    const a = [r, g, b].map(function(v) {
-        v /= 255;
-        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-    });
-    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
-}
-
-// Determines if a hex color is dark based on its luminance
-function isDarkColor(hex: string): boolean {
-    const rgb = hexToRgb(hex);
-    if (!rgb) return false; // Default to not dark if invalid hex
-
-    const luminance = getLuminance(rgb.r, rgb.g, rgb.b);
-    // A common threshold for dark vs. light is 0.179 (WCAG 2.0)
-    return luminance < 0.179;
-}
-
-
+/**
+ * 📂 Gets the configured palette file path
+ * الحصول على مسار ملف لوحة الألوان المُعدّ
+ */
 export function getPalettePath(): string {
-    const cfg = vscode.workspace.getConfiguration('matugen');
-    const p = cfg.get<string>('palettePath') || '~/.local/state/quickshell/user/generated/colors.json';
+    const cfg = vscode.workspace.getConfiguration('illogicalImpulse');
+    const defaultPath = '~/.local/state/quickshell/user/generated/colors.json';
+    const p = cfg.get<string>('palettePath') || defaultPath;
     return expandHome(p);
-};
+}
 
+/**
+ * 🎨 Reads and processes the palette file
+ * قراءة ومعالجة ملف لوحة الألوان
+ * 
+ * @returns Object containing colors and isDark flag, or null if read fails
+ */
 export function readPalette(): { colors: Record<string, string>, isDark: boolean } | null {
     const p = getPalettePath();
     if (!p) return null;
+
     const paletteData = safeReadJsonSync(p);
     if (!paletteData) {
-      vscode.window.showWarningMessage(`Matugen: could not read palette file at ${p}. Make sure the file exists and is valid JSON.`);
+      vscode.window.showWarningMessage(
+        `⚠️ Illogical Impulse: Could not read palette file at ${p}.\n` +
+        `تعذر قراءة ملف الألوان. تأكد من وجود الملف وأنه JSON صالح.`
+      );
       return null;
     }
 
     const rawColors = (paletteData && (paletteData.colors || paletteData)) || {};
+
+    /**
+     * 🔍 Picks the first available color from a list of possible names
+     * اختيار أول لون متاح من قائمة الأسماء المحتملة
+     */
     const pick = (names: string[], fallback?: string): string => {
         for (const n of names) {
           if (rawColors[n]) return normalizeHex(rawColors[n]);
@@ -102,36 +53,58 @@ export function readPalette(): { colors: Record<string, string>, isDark: boolean
         return fallback || '#000000';
     };
 
+    // ═══════════════════════════════════════════════════════════════════════ 
+    // Material Design 3 Color Mapping
+    // ═══════════════════════════════════════════════════════════════════════ 
     const colors: Record<string, string> = {
+        // Primary Colors
         primary: pick(['primary', 'accent', 'accent_color', 'accentColor']),
         onPrimary: pick(['on_primary', 'onPrimary']),
         primaryContainer: pick(['primary_container', 'primaryContainer']),
         onPrimaryContainer: pick(['on_primary_container', 'onPrimaryContainer']),
+
+        // Secondary Colors
         secondary: pick(['secondary']),
         onSecondary: pick(['on_secondary', 'onSecondary']),
         secondaryContainer: pick(['secondary_container', 'secondaryContainer']),
         onSecondaryContainer: pick(['on_secondary_container', 'onSecondaryContainer']),
+
+        // Tertiary Colors
         tertiary: pick(['tertiary']),
         onTertiary: pick(['on_tertiary', 'onTertiary']),
         tertiaryContainer: pick(['tertiary_container', 'tertiaryContainer']),
         onTertiaryContainer: pick(['on_tertiary_container', 'onTertiaryContainer']),
+
+        // Error Colors
         error: pick(['error']),
         onError: pick(['on_error', 'onError']),
         errorContainer: pick(['error_container', 'errorContainer']),
         onErrorContainer: pick(['on_error_container', 'onErrorContainer']),
+
+        // Background & Surface
         background: pick(['background', 'bg']),
         onBackground: pick(['on_background', 'onBackground', 'foreground', 'fg']),
         surface: pick(['surface']),
         onSurface: pick(['on_surface', 'onSurface']),
+
+        // Surface Variants
         surfaceVariant: pick(['surface_variant', 'surfaceVariant']),
         onSurfaceVariant: pick(['on_surface_variant', 'onSurfaceVariant']),
+
+        // Outlines & Dividers
         outline: pick(['outline']),
         outlineVariant: pick(['outline_variant', 'outlineVariant']),
+
+        // Utility
         shadow: pick(['shadow']),
         scrim: pick(['scrim']),
+
+        // Inverse Colors
         inverseSurface: pick(['inverse_surface', 'inverseSurface']),
         inverseOnSurface: pick(['inverse_on_surface', 'inverseOnSurface']),
         inversePrimary: pick(['inverse_primary', 'inversePrimary']),
+
+        // Surface Elevation Levels
         surfaceDim: pick(['surface_dim', 'surfaceDim']),
         surfaceBright: pick(['surface_bright', 'surfaceBright']),
         surfaceContainerLowest: pick(['surface_container_lowest', 'surfaceContainerLowest']),
@@ -139,9 +112,12 @@ export function readPalette(): { colors: Record<string, string>, isDark: boolean
         surfaceContainer: pick(['surface_container', 'surfaceContainer']),
         surfaceContainerHigh: pick(['surface_container_high', 'surfaceContainerHigh']),
         surfaceContainerHighest: pick(['surface_container_highest', 'surfaceContainerHighest']),
+
+        // Include any additional colors from the palette
         ...rawColors
     };
 
+    // Determine if theme is dark or light
     const isDark = isDarkColor(colors.background);
 
     return { colors, isDark };

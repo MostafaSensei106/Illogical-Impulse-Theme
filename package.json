@@ -1,9 +1,9 @@
 {
-  "name": "matugen-vscode",
+  "name": "illogical-impulse-theme",
   "displayName": "Illogical Impulse Theme",
-  "description": "Applies your material you palette from Matugen to VS Code.",
+  "description": "Applies your Material You palette to VS Code, powered by Matugen.",
   "version": "1.0.0",
-  "publisher": "Matugen",
+  "publisher": "Illogical-Impulse",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -17,23 +17,23 @@
   "contributes": {
     "commands": [
       {
-        "command": "matugen.applyPalette",
-        "title": "Matugen: Apply/Reload Palette"
+        "command": "illogicalImpulse.applyPalette",
+        "title": "Illogical Impulse: Apply/Reload Palette"
       },
       {
-        "command": "matugen.removePalette",
-        "title": "Matugen: Reset Color Customizations"
+        "command": "illogicalImpulse.removePalette",
+        "title": "Illogical Impulse: Reset Color Customizations"
       }
     ],
     "configuration": {
-      "title": "Matugen",
+      "title": "Illogical Impulse",
       "properties": {
-        "matugen.palettePath": {
+        "illogicalImpulse.palettePath": {
           "type": "string",
           "default": "~/.local/state/quickshell/user/generated/colors.json",
           "description": "Path to the Matugen JSON palette file. The extension will watch this file for changes."
         },
-        "matugen.debounceMs": {
+        "illogicalImpulse.debounceMs": {
           "type": "number",
           "default": 300,
           "description": "Debounce time in milliseconds for reloading the palette after a file change."
@@ -51,11 +51,13 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "postinstall": "vscode-dts dev"
   },
   "devDependencies": {
     "@types/vscode": "^1.70.0",
     "@types/node": "18.x",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vscode-dts": "^0.1.3"
   }
 }

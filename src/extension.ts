@@ -5,9 +5,9 @@ import { getPalettePath, readPalette } from './palette';
 import { createTheme, THEME_NAME } from './theme';
 
 export function activate(context: vscode.ExtensionContext) {
-  const logger = vscode.window.createOutputChannel("Matugen", { log: true });
+  const logger = vscode.window.createOutputChannel("Illogical Impulse", { log: true }); // Changed logger name
 
-  const debounceMs = (): number => vscode.workspace.getConfiguration('matugen').get<number>('debounceMs') || 300;
+  const debounceMs = (): number => vscode.workspace.getConfiguration('illogicalImpulse').get<number>('debounceMs') || 300; // Changed config name
 
   let watcher: fs.FSWatcher | null = null;
   let timeout: NodeJS.Timeout | null = null;
@@ -18,9 +18,9 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    const themeJson = createTheme(palette); // Pass the entire palette object
+    const themeJson = createTheme(palette);
     const themeJsonString = JSON.stringify(themeJson, null, 2);
-    const themePath = path.join(context.extensionPath, 'themes', 'matugen-theme.json');
+    const themePath = path.join(context.extensionPath, 'themes', 'matugen-theme.json'); // This path is fine, it's internal
 
     try {
         await fs.promises.writeFile(themePath, themeJsonString, 'utf8');
@@ -75,11 +75,11 @@ export function activate(context: vscode.ExtensionContext) {
         logger.warn(`Directory ${dir} for palette file does not exist. Cannot watch for changes.`);
     }
   }
-
+  
   async function removePalette() {
     const themePath = path.join(context.extensionPath, 'themes', 'matugen-theme.json');
     const defaultTheme = {
-        name: THEME_NAME, // Use the new THEME_NAME
+        name: THEME_NAME,
         type: "dark", // Default to dark for reset
         colors: {
             "editor.background": "#121212",
@@ -106,7 +106,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration(e => {
       const config = vscode.workspace.getConfiguration();
-      if (e.affectsConfiguration('matugen.palettePath') || e.affectsConfiguration('matugen.debounceMs')) {
+      if (e.affectsConfiguration('illogicalImpulse.palettePath') || e.affectsConfiguration('illogicalImpulse.debounceMs')) { // Changed config names
         watchPaletteFile();
         applyPaletteOnce(true);
       }
@@ -114,13 +114,13 @@ export function activate(context: vscode.ExtensionContext) {
         applyPaletteOnce(false);
       }
     }),
-    vscode.commands.registerCommand('matugen.applyPalette', async () => {
+    vscode.commands.registerCommand('illogicalImpulse.applyPalette', async () => { // Changed command name
       await applyPaletteOnce(true);
     }),
-    vscode.commands.registerCommand('matugen.removePalette', removePalette),
-    { dispose() {
-        if (watcher) {
-            try { watcher.close(); } catch (e) { /* ignore */ }
+    vscode.commands.registerCommand('illogicalImpulse.removePalette', removePalette), // Changed command name
+    { dispose() { 
+        if (watcher) { 
+            try { watcher.close(); } catch (e) { /* ignore */ } 
         }
         if (timeout) {
             clearTimeout(timeout);
