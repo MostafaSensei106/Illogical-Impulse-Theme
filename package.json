@@ -1,6 +1,6 @@
 {
   "name": "matugen-vscode",
-  "displayName": "Matugen for VS Code",
+  "displayName": "Illogical Impulse Theme",
   "description": "Applies your material you palette from Matugen to VS Code.",
   "version": "1.0.0",
   "publisher": "Matugen",
@@ -30,7 +30,7 @@
       "properties": {
         "matugen.palettePath": {
           "type": "string",
-          "default": "~/.cache/matugen/palette.json",
+          "default": "~/.local/state/quickshell/user/generated/colors.json",
           "description": "Path to the Matugen JSON palette file. The extension will watch this file for changes."
         },
         "matugen.debounceMs": {
@@ -42,7 +42,7 @@
     },
     "themes": [
       {
-        "label": "Matugen",
+        "label": "Illogical Impulse Theme",
         "uiTheme": "vs-dark",
         "path": "./themes/matugen-theme.json"
       }
