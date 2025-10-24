@@ -1,5 +1,5 @@
 // ============================================================================
-// createWorkbenchColors.ts - Material Design 3 Inspired VSCode Theme
+// createWorkbenchColors.ts - Material Design 3 Enhanced Vibrant Theme
 // ============================================================================
 
 export function createWorkbenchColors(colors: Record<string, string>): { [k: string]: string } {
@@ -23,10 +23,10 @@ export function createWorkbenchColors(colors: Record<string, string>): { [k: str
     // GENERAL UI - الواجهة العامة
     // ═══════════════════════════════════════════════════════════════════════
     'foreground': onSurface,
-    'focusBorder': primary,
-    'selection.background': `${primaryContainer}cc`,
-    'widget.shadow': `${shadow}40`,
-    'widget.border': outline,
+    'focusBorder': secondary,
+    'selection.background': `${secondary}4d`,
+    'widget.shadow': `${shadow}50`,
+    'widget.border': `${outline}80`,
 
     // ═══════════════════════════════════════════════════════════════════════
     // INPUTS & FORMS - حقول الإدخال والنماذج
@@ -35,8 +35,8 @@ export function createWorkbenchColors(colors: Record<string, string>): { [k: str
     'input.foreground': onSurface,
     'input.border': outline,
     'input.placeholderForeground': `${onSurfaceVariant}99`,
-    'inputOption.activeBackground': secondaryContainer,
-    'inputOption.activeForeground': onSecondaryContainer,
+    'inputOption.activeBackground': primary,
+    'inputOption.activeForeground': onPrimary,
     'inputValidation.errorBackground': errorContainer,
     'inputValidation.errorBorder': error,
     'inputValidation.errorForeground': onErrorContainer,
@@ -45,7 +45,7 @@ export function createWorkbenchColors(colors: Record<string, string>): { [k: str
     // DROPDOWNS - القوائم المنسدلة
     // ═══════════════════════════════════════════════════════════════════════
     'dropdown.background': surfaceContainerHigh,
-    'dropdown.listBackground': surfaceContainer,
+    'dropdown.listBackground': surfaceContainerHighest,
     'dropdown.border': outline,
     'dropdown.foreground': onSurface,
 
@@ -54,125 +54,125 @@ export function createWorkbenchColors(colors: Record<string, string>): { [k: str
     // ═══════════════════════════════════════════════════════════════════════
     'button.background': primary,
     'button.foreground': onPrimary,
-    'button.hoverBackground': `${primary}e6`,
+    'button.hoverBackground': `${primary}dd`,
     'button.secondaryBackground': secondaryContainer,
     'button.secondaryForeground': onSecondaryContainer,
-    'button.secondaryHoverBackground': `${secondaryContainer}e6`,
+    'button.secondaryHoverBackground': `${secondaryContainer}dd`,
 
     // ═══════════════════════════════════════════════════════════════════════
     // BADGES - الشارات
     // ═══════════════════════════════════════════════════════════════════════
-    'badge.background': tertiaryContainer,
-    'badge.foreground': onTertiaryContainer,
+    'badge.background': secondary,
+    'badge.foreground': onSecondary,
 
     // ═══════════════════════════════════════════════════════════════════════
     // SCROLLBARS - أشرطة التمرير
     // ═══════════════════════════════════════════════════════════════════════
-    'scrollbar.shadow': `${shadow}30`,
-    'scrollbarSlider.background': `${onSurfaceVariant}4d`,
-    'scrollbarSlider.hoverBackground': `${onSurfaceVariant}66`,
-    'scrollbarSlider.activeBackground': `${primary}99`,
+    'scrollbar.shadow': `${shadow}40`,
+    'scrollbarSlider.background': `${primary}50`,
+    'scrollbarSlider.hoverBackground': `${primary}80`,
+    'scrollbarSlider.activeBackground': `${primary}b3`,
 
     // ═══════════════════════════════════════════════════════════════════════
     // PROGRESS BAR - شريط التقدم
     // ═══════════════════════════════════════════════════════════════════════
-    'progressBar.background': primary,
+    'progressBar.background': secondary,
 
     // ═══════════════════════════════════════════════════════════════════════
     // EDITOR - MAIN SURFACE - المحرر - السطح الرئيسي
     // ═══════════════════════════════════════════════════════════════════════
-    'editor.background': surface,
-    'editor.foreground': onSurface,
-    'editorCursor.foreground': primary,
-    'editor.selectionBackground': `${primary}33`,
-    'editor.inactiveSelectionBackground': `${primaryContainer}26`,
-    'editor.selectionHighlightBackground': `${secondaryContainer}40`,
-    'editor.wordHighlightBackground': `${tertiaryContainer}33`,
-    'editor.wordHighlightStrongBackground': `${tertiaryContainer}4d`,
-    'editor.lineHighlightBackground': `${surfaceContainerHigh}80`,
+    'editor.background': background,
+    'editor.foreground': onBackground,
+    'editorCursor.foreground': secondary,
+    'editor.selectionBackground': `${primary}40`,
+    'editor.inactiveSelectionBackground': `${primaryContainer}33`,
+    'editor.selectionHighlightBackground': `${tertiary}33`,
+    'editor.wordHighlightBackground': `${secondaryContainer}40`,
+    'editor.wordHighlightStrongBackground': `${secondary}4d`,
+    'editor.lineHighlightBackground': `${primaryContainer}20`,
     'editor.lineHighlightBorder': 'transparent',
-    'editor.findMatchBackground': `${secondaryContainer}66`,
-    'editor.findMatchHighlightBackground': `${secondaryContainer}33`,
-    'editor.findRangeHighlightBackground': `${primaryContainer}26`,
+    'editor.findMatchBackground': `${secondary}80`,
+    'editor.findMatchHighlightBackground': `${secondary}40`,
+    'editor.findRangeHighlightBackground': `${tertiary}26`,
 
     // ═══════════════════════════════════════════════════════════════════════
     // EDITOR - LINE NUMBERS - أرقام الأسطر
     // ═══════════════════════════════════════════════════════════════════════
-    'editorLineNumber.foreground': `${onSurfaceVariant}b3`,
+    'editorLineNumber.foreground': `${onSurfaceVariant}99`,
     'editorLineNumber.activeForeground': primary,
 
     // ═══════════════════════════════════════════════════════════════════════
     // EDITOR - GUIDES & WHITESPACE - الأدلة والمسافات
     // ═══════════════════════════════════════════════════════════════════════
-    'editorWhitespace.foreground': `${onSurfaceVariant}4d`,
+    'editorWhitespace.foreground': `${onSurfaceVariant}40`,
     'editorIndentGuide.background': `${outline}40`,
-    'editorIndentGuide.activeBackground': `${primary}80`,
-    'editorRuler.foreground': `${outline}66`,
-    'editorCodeLens.foreground': onSurfaceVariant,
-    'editorBracketMatch.background': `${primary}26`,
-    'editorBracketMatch.border': primary,
+    'editorIndentGuide.activeBackground': `${secondary}99`,
+    'editorRuler.foreground': `${outline}50`,
+    'editorCodeLens.foreground': `${tertiary}cc`,
+    'editorBracketMatch.background': `${secondary}33`,
+    'editorBracketMatch.border': secondary,
 
     // ═══════════════════════════════════════════════════════════════════════
     // EDITOR - WIDGETS - عناصر المحرر
     // ═══════════════════════════════════════════════════════════════════════
-    'editorWidget.background': surfaceContainerHigh,
+    'editorWidget.background': surfaceContainer,
     'editorWidget.border': outline,
     'editorWidget.foreground': onSurface,
-    'editorHoverWidget.background': surfaceContainerHighest,
+    'editorHoverWidget.background': surfaceContainerHigh,
     'editorHoverWidget.border': outline,
     'editorHoverWidget.foreground': onSurface,
-    'editorSuggestWidget.background': surfaceContainerHigh,
+    'editorSuggestWidget.background': surfaceContainer,
     'editorSuggestWidget.border': outline,
     'editorSuggestWidget.foreground': onSurface,
-    'editorSuggestWidget.highlightForeground': primary,
+    'editorSuggestWidget.highlightForeground': secondary,
     'editorSuggestWidget.selectedBackground': primaryContainer,
     'editorSuggestWidget.selectedForeground': onPrimaryContainer,
 
     // ═══════════════════════════════════════════════════════════════════════
     // EDITOR - GUTTER - هامش المحرر
     // ═══════════════════════════════════════════════════════════════════════
-    'editorGutter.background': surface,
-    'editorGutter.modifiedBackground': tertiary,
-    'editorGutter.addedBackground': primary,
+    'editorGutter.background': background,
+    'editorGutter.modifiedBackground': secondary,
+    'editorGutter.addedBackground': tertiary,
     'editorGutter.deletedBackground': error,
 
     // ═══════════════════════════════════════════════════════════════════════
     // ACTIVITY BAR - شريط النشاط
     // ═══════════════════════════════════════════════════════════════════════
-    'activityBar.background': surfaceContainer,
+    'activityBar.background': surfaceContainerLow,
     'activityBar.foreground': primary,
-    'activityBar.inactiveForeground': `${onSurfaceVariant}cc`,
-    'activityBar.activeBorder': primary,
-    'activityBar.activeBackground': `${primaryContainer}33`,
-    'activityBar.activeFocusBorder': primary,
-    'activityBarBadge.background': tertiaryContainer,
-    'activityBarBadge.foreground': onTertiaryContainer,
-    'activityBar.border': 'transparent',
+    'activityBar.inactiveForeground': `${onSurfaceVariant}b3`,
+    'activityBar.activeBorder': secondary,
+    'activityBar.activeBackground': `${primary}26`,
+    'activityBar.activeFocusBorder': secondary,
+    'activityBarBadge.background': secondary,
+    'activityBarBadge.foreground': onSecondary,
+    'activityBar.border': outlineVariant,
 
     // ═══════════════════════════════════════════════════════════════════════
     // SIDE BAR - الشريط الجانبي
     // ═══════════════════════════════════════════════════════════════════════
-    'sideBar.background': surfaceContainerLow,
+    'sideBar.background': surfaceContainerHigh,
     'sideBar.foreground': onSurface,
-    'sideBar.border': 'transparent',
-    'sideBarTitle.foreground': onSurface,
-    'sideBarSectionHeader.background': surfaceContainer,
-    'sideBarSectionHeader.foreground': onSurfaceVariant,
-    'sideBarSectionHeader.border': 'transparent',
+    'sideBar.border': outlineVariant,
+    'sideBarTitle.foreground': primary,
+    'sideBarSectionHeader.background': surfaceContainerHigh,
+    'sideBarSectionHeader.foreground': secondary,
+    'sideBarSectionHeader.border': outline,
 
     // ═══════════════════════════════════════════════════════════════════════
     // LISTS & TREES - القوائم والأشجار
     // ═══════════════════════════════════════════════════════════════════════
-    'list.hoverBackground': `${surfaceContainerHigh}b3`,
+    'list.hoverBackground': `${primary}1a`,
     'list.hoverForeground': onSurface,
-    'list.inactiveSelectionBackground': `${surfaceContainerHigh}80`,
-    'list.inactiveSelectionForeground': onSurface,
-    'list.activeSelectionBackground': secondaryContainer,
-    'list.activeSelectionForeground': onSecondaryContainer,
-    'list.focusBackground': primaryContainer,
-    'list.focusForeground': onPrimaryContainer,
-    'list.focusOutline': primary,
-    'list.highlightForeground': primary,
+    'list.inactiveSelectionBackground': `${primaryContainer}66`,
+    'list.inactiveSelectionForeground': onPrimaryContainer,
+    'list.activeSelectionBackground': primary,
+    'list.activeSelectionForeground': onPrimary,
+    'list.focusBackground': `${secondary}40`,
+    'list.focusForeground': onSecondaryContainer,
+    'list.focusOutline': secondary,
+    'list.highlightForeground': secondary,
     'list.errorForeground': error,
     'list.warningForeground': tertiary,
     'list.invalidItemForeground': onErrorContainer,
@@ -181,11 +181,11 @@ export function createWorkbenchColors(colors: Record<string, string>): { [k: str
     // ═══════════════════════════════════════════════════════════════════════
     // TITLE BAR - شريط العنوان
     // ═══════════════════════════════════════════════════════════════════════
-    'titleBar.activeBackground': surfaceContainer,
+    'titleBar.activeBackground': surface,
     'titleBar.activeForeground': onSurface,
-    'titleBar.inactiveBackground': surfaceContainerLow,
+    'titleBar.inactiveBackground': surfaceContainerLowest,
     'titleBar.inactiveForeground': onSurfaceVariant,
-    'titleBar.border': 'transparent',
+    'titleBar.border': outlineVariant,
 
     // ═══════════════════════════════════════════════════════════════════════
     // MENU BAR - شريط القوائم
@@ -194,70 +194,70 @@ export function createWorkbenchColors(colors: Record<string, string>): { [k: str
     'menubar.selectionForeground': onPrimaryContainer,
     'menu.background': surfaceContainerHigh,
     'menu.foreground': onSurface,
-    'menu.selectionBackground': secondaryContainer,
-    'menu.selectionForeground': onSecondaryContainer,
-    'menu.separatorBackground': outlineVariant,
-    'menu.border': outline,
+    'menu.selectionBackground': primary,
+    'menu.selectionForeground': onPrimary,
+    'menu.separatorBackground': outline,
+    'menu.border': outlineVariant,
 
     // ═══════════════════════════════════════════════════════════════════════
     // STATUS BAR - شريط الحالة
     // ═══════════════════════════════════════════════════════════════════════
-    'statusBar.background': surfaceContainerLow,
-    'statusBar.foreground': onSurfaceVariant,
-    'statusBar.border': 'transparent',
-    'statusBar.noFolderBackground': surfaceContainerLow,
-    'statusBar.noFolderForeground': onSurfaceVariant,
+    'statusBar.background': primaryContainer,
+    'statusBar.foreground': onPrimaryContainer,
+    'statusBar.border': outline,
+    'statusBar.noFolderBackground': secondaryContainer,
+    'statusBar.noFolderForeground': onSecondaryContainer,
     'statusBar.debuggingBackground': errorContainer,
     'statusBar.debuggingForeground': onErrorContainer,
-    'statusBarItem.prominentBackground': primaryContainer,
-    'statusBarItem.prominentForeground': onPrimaryContainer,
-    'statusBarItem.prominentHoverBackground': `${primaryContainer}e6`,
-    'statusBarItem.remoteBackground': tertiaryContainer,
-    'statusBarItem.remoteForeground': onTertiaryContainer,
+    'statusBarItem.prominentBackground': primary,
+    'statusBarItem.prominentForeground': onPrimary,
+    'statusBarItem.prominentHoverBackground': `${primary}dd`,
+    'statusBarItem.remoteBackground': secondary,
+    'statusBarItem.remoteForeground': onSecondary,
     'statusBarItem.warningBackground': tertiary,
     'statusBarItem.warningForeground': onTertiary,
     'statusBarItem.errorBackground': error,
     'statusBarItem.errorForeground': onError,
-    'statusBarItem.hoverBackground': `${surfaceContainer}cc`,
+    'statusBarItem.hoverBackground': `${primary}40`,
 
     // ═══════════════════════════════════════════════════════════════════════
     // TABS - علامات التبويب
     // ═══════════════════════════════════════════════════════════════════════
     'tab.activeBackground': surface,
     'tab.activeForeground': primary,
-    'tab.inactiveBackground': surfaceContainerLow,
+    'tab.inactiveBackground': surfaceContainer,
     'tab.inactiveForeground': onSurfaceVariant,
     'tab.activeBorder': 'transparent',
     'tab.activeBorderTop': primary,
     'tab.unfocusedActiveBorder': 'transparent',
-    'tab.unfocusedActiveBorderTop': `${primary}80`,
+    'tab.unfocusedActiveBorderTop': `${primary}99`,
     'tab.unfocusedActiveBackground': surface,
-    'tab.unfocusedActiveForeground': `${primary}cc`,
-    'tab.unfocusedInactiveBackground': surfaceContainerLow,
-    'tab.unfocusedInactiveForeground': `${onSurfaceVariant}99`,
-    'tab.border': 'transparent',
-    'tab.hoverBackground': `${surfaceContainer}cc`,
-    'tab.hoverForeground': onSurface,
+    'tab.unfocusedActiveForeground': `${primary}b3`,
+    'tab.unfocusedInactiveBackground': surfaceContainer,
+    'tab.unfocusedInactiveForeground': `${onSurfaceVariant}80`,
+    'tab.border': outlineVariant,
+    'tab.hoverBackground': `${primary}1a`,
+    'tab.hoverForeground': primary,
     'tab.hoverBorder': 'transparent',
-    'tab.lastPinnedBorder': outlineVariant,
-    'editorGroupHeader.tabsBackground': surfaceContainerLow,
-    'editorGroupHeader.tabsBorder': 'transparent',
-    'editorGroupHeader.border': 'transparent',
-    'editorGroupHeader.noTabsBackground': surfaceContainerLow,
+    'tab.lastPinnedBorder': `${secondary}60`,
+    'editorGroupHeader.tabsBackground': surfaceContainer,
+    'editorGroupHeader.tabsBorder': outlineVariant,
+    'editorGroupHeader.border': outlineVariant,
+    'editorGroupHeader.noTabsBackground': surfaceContainer,
 
     // ═══════════════════════════════════════════════════════════════════════
     // PANEL - اللوحة السفلية
     // ═══════════════════════════════════════════════════════════════════════
-    'panel.background': surface,
+    'panel.background': surfaceContainerLow,
     'panel.border': outlineVariant,
-    'panelTitle.activeBorder': primary,
-    'panelTitle.activeForeground': primary,
+    'panelTitle.activeBorder': secondary,
+    'panelTitle.activeForeground': secondary,
     'panelTitle.inactiveForeground': onSurfaceVariant,
     'panelSection.border': outlineVariant,
-    'panelSection.dropBackground': `${primaryContainer}40`,
-    'panelSectionHeader.background': surfaceContainer,
+    'panelSection.dropBackground': `${primary}33`,
+    'panelSectionHeader.background': surfaceContainerHigh,
     'panelSectionHeader.foreground': onSurface,
-    'panelSectionHeader.border': outlineVariant,
+    'panelSectionHeader.border': outline,
 
     // ═══════════════════════════════════════════════════════════════════════
     // NOTIFICATIONS - الإشعارات
@@ -266,79 +266,79 @@ export function createWorkbenchColors(colors: Record<string, string>): { [k: str
     'notificationCenterHeader.background': primaryContainer,
     'notificationCenterHeader.foreground': onPrimaryContainer,
     'notificationToast.border': outline,
-    'notifications.background': surfaceContainerHigh,
+    'notifications.background': surfaceContainerHighest,
     'notifications.foreground': onSurface,
     'notifications.border': outline,
-    'notificationLink.foreground': primary,
+    'notificationLink.foreground': secondary,
     'notificationsErrorIcon.foreground': error,
     'notificationsWarningIcon.foreground': tertiary,
-    'notificationsInfoIcon.foreground': secondary,
+    'notificationsInfoIcon.foreground': primary,
 
     // ═══════════════════════════════════════════════════════════════════════
     // PEEK VIEW - عرض النظرة السريعة
     // ═══════════════════════════════════════════════════════════════════════
-    'peekView.border': primary,
-    'peekViewEditor.background': surface,
-    'peekViewEditor.matchHighlightBackground': `${secondaryContainer}66`,
-    'peekViewEditorGutter.background': surfaceContainerLow,
-    'peekViewResult.background': surfaceContainer,
+    'peekView.border': secondary,
+    'peekViewEditor.background': surfaceContainer,
+    'peekViewEditor.matchHighlightBackground': `${secondary}66`,
+    'peekViewEditorGutter.background': surfaceContainer,
+    'peekViewResult.background': surfaceContainerHigh,
     'peekViewResult.fileForeground': onSurface,
     'peekViewResult.lineForeground': onSurfaceVariant,
-    'peekViewResult.matchHighlightBackground': `${secondaryContainer}80`,
+    'peekViewResult.matchHighlightBackground': `${secondary}99`,
     'peekViewResult.selectionBackground': primaryContainer,
     'peekViewResult.selectionForeground': onPrimaryContainer,
-    'peekViewTitle.background': surfaceContainerHigh,
-    'peekViewTitleDescription.foreground': onSurfaceVariant,
-    'peekViewTitleLabel.foreground': primary,
+    'peekViewTitle.background': primary,
+    'peekViewTitleDescription.foreground': `${onPrimary}b3`,
+    'peekViewTitleLabel.foreground': onPrimary,
 
     // ═══════════════════════════════════════════════════════════════════════
     // MERGE CONFLICTS - تعارضات الدمج
     // ═══════════════════════════════════════════════════════════════════════
-    'merge.currentHeaderBackground': `${primary}40`,
-    'merge.currentContentBackground': `${primary}1a`,
-    'merge.incomingHeaderBackground': `${secondary}40`,
-    'merge.incomingContentBackground': `${secondary}1a`,
+    'merge.currentHeaderBackground': `${tertiary}50`,
+    'merge.currentContentBackground': `${tertiary}20`,
+    'merge.incomingHeaderBackground': `${secondary}50`,
+    'merge.incomingContentBackground': `${secondary}20`,
     'merge.border': outline,
-    'merge.commonHeaderBackground': `${tertiary}40`,
-    'merge.commonContentBackground': `${tertiary}1a`,
+    'merge.commonHeaderBackground': `${onSurfaceVariant}40`,
+    'merge.commonContentBackground': `${onSurfaceVariant}20`,
 
     // ═══════════════════════════════════════════════════════════════════════
     // GIT DECORATIONS - زخارف Git
     // ═══════════════════════════════════════════════════════════════════════
-    'gitDecoration.addedResourceForeground': `${primary}e6`,
-    'gitDecoration.modifiedResourceForeground': `${tertiary}e6`,
-    'gitDecoration.deletedResourceForeground': `${error}e6`,
-    'gitDecoration.untrackedResourceForeground': `${secondary}cc`,
-    'gitDecoration.ignoredResourceForeground': `${onSurfaceVariant}80`,
-    'gitDecoration.conflictingResourceForeground': `${error}cc`,
-    'gitDecoration.submoduleResourceForeground': `${tertiaryContainer}e6`,
+    'gitDecoration.addedResourceForeground': tertiary,
+    'gitDecoration.modifiedResourceForeground': secondary,
+    'gitDecoration.deletedResourceForeground': error,
+    'gitDecoration.untrackedResourceForeground': `${tertiary}b3`,
+    'gitDecoration.ignoredResourceForeground': `${onSurfaceVariant}66`,
+    'gitDecoration.conflictingResourceForeground': error,
+    'gitDecoration.submoduleResourceForeground': primary,
 
     // ═══════════════════════════════════════════════════════════════════════
     // TERMINAL - الطرفية
     // ═══════════════════════════════════════════════════════════════════════
-    'terminal.background': surface,
-    'terminal.foreground': onSurface,
-    'terminal.selectionBackground': `${primaryContainer}80`,
+    'terminal.background': background,
+    'terminal.foreground': onBackground,
+    'terminal.selectionBackground': `${primary}66`,
     'terminal.border': outlineVariant,
-    'terminalCursor.foreground': primary,
-    'terminalCursor.background': surface,
+    'terminalCursor.foreground': secondary,
+    'terminalCursor.background': background,
 
     'terminal.ansiBlack': surfaceDim,
     'terminal.ansiRed': error,
-    'terminal.ansiGreen': primary,
-    'terminal.ansiYellow': tertiary,
+    'terminal.ansiGreen': tertiary,
+    'terminal.ansiYellow': `${tertiary}dd`,
     'terminal.ansiBlue': secondary,
-    'terminal.ansiMagenta': tertiaryContainer,
-    'terminal.ansiCyan': secondaryContainer,
+    'terminal.ansiMagenta': `${secondary}dd`,
+    'terminal.ansiCyan': primary,
     'terminal.ansiWhite': onSurface,
 
     'terminal.ansiBrightBlack': onSurfaceVariant,
     'terminal.ansiBrightRed': onError,
-    'terminal.ansiBrightGreen': onPrimary,
-    'terminal.ansiBrightYellow': onTertiary,
+    'terminal.ansiBrightGreen': onTertiary,
+    'terminal.ansiBrightYellow': tertiary,
     'terminal.ansiBrightBlue': onSecondary,
-    'terminal.ansiBrightMagenta': onTertiaryContainer,
-    'terminal.ansiBrightCyan': onSecondaryContainer,
+    'terminal.ansiBrightMagenta': secondary,
+    'terminal.ansiBrightCyan': onPrimary,
     'terminal.ansiBrightWhite': onBackground,
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -346,23 +346,23 @@ export function createWorkbenchColors(colors: Record<string, string>): { [k: str
     // ═══════════════════════════════════════════════════════════════════════
     'breadcrumb.background': surface,
     'breadcrumb.foreground': onSurfaceVariant,
-    'breadcrumb.focusForeground': onSurface,
-    'breadcrumb.activeSelectionForeground': primary,
-    'breadcrumbPicker.background': surfaceContainerHigh,
+    'breadcrumb.focusForeground': primary,
+    'breadcrumb.activeSelectionForeground': secondary,
+    'breadcrumbPicker.background': surfaceContainerHighest,
 
     // ═══════════════════════════════════════════════════════════════════════
     // QUICK PICKER - أداة الاختيار السريع
     // ═══════════════════════════════════════════════════════════════════════
-    'quickInput.background': surfaceContainerHigh,
+    'quickInput.background': surfaceContainerHighest,
     'quickInput.foreground': onSurface,
     'quickInputList.focusBackground': primaryContainer,
     'quickInputList.focusForeground': onPrimaryContainer,
-    'quickInputList.focusIconForeground': primary,
+    'quickInputList.focusIconForeground': onPrimaryContainer,
 
     // ═══════════════════════════════════════════════════════════════════════
     // SETTINGS - الإعدادات
     // ═══════════════════════════════════════════════════════════════════════
-    'settings.headerForeground': primary,
+    'settings.headerForeground': secondary,
     'settings.modifiedItemIndicator': tertiary,
     'settings.dropdownBackground': surfaceContainerHigh,
     'settings.dropdownForeground': onSurface,
@@ -380,10 +380,10 @@ export function createWorkbenchColors(colors: Record<string, string>): { [k: str
     // ═══════════════════════════════════════════════════════════════════════
     // DIFF EDITOR - محرر المقارنة
     // ═══════════════════════════════════════════════════════════════════════
-    'diffEditor.insertedTextBackground': `${primary}26`,
-    'diffEditor.insertedTextBorder': `${primary}40`,
-    'diffEditor.removedTextBackground': `${error}26`,
-    'diffEditor.removedTextBorder': `${error}40`,
+    'diffEditor.insertedTextBackground': `${tertiary}33`,
+    'diffEditor.insertedTextBorder': `${tertiary}60`,
+    'diffEditor.removedTextBackground': `${error}33`,
+    'diffEditor.removedTextBorder': `${error}60`,
     'diffEditor.border': outline,
     'diffEditor.diagonalFill': `${outlineVariant}80`,
   };
